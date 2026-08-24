@@ -1,0 +1,48 @@
+hostname R2
+
+interface GigabitEthernet0/0
+ ip address 10.0.0.2 255.255.255.252
+ no shutdown
+
+interface GigabitEthernet0/1
+ no shutdown
+
+interface GigabitEthernet0/1.10
+ encapsulation dot1Q 10
+ ip address 192.168.110.1 255.255.255.0
+
+interface GigabitEthernet0/1.20
+ encapsulation dot1Q 20
+ ip address 192.168.120.1 255.255.255.0
+
+interface GigabitEthernet0/1.30
+ encapsulation dot1Q 30
+ ip address 192.168.130.1 255.255.255.0
+
+interface GigabitEthernet0/1.99
+ encapsulation dot1Q 99
+ ip address 192.168.199.1 255.255.255.0
+
+ip dhcp excluded-address 192.168.110.1 192.168.110.3
+ip dhcp excluded-address 192.168.120.1 192.168.120.3
+ip dhcp excluded-address 192.168.130.1 192.168.130.3
+
+ip dhcp pool R2_ADMIN
+ network 192.168.110.0 255.255.255.0
+ default-router 192.168.110.1
+ dns-server 192.168.30.10
+
+ip dhcp pool R2_STAFF
+ network 192.168.120.0 255.255.255.0
+ default-router 192.168.120.1
+ dns-server 192.168.30.10
+
+ip dhcp pool R2_IT
+ network 192.168.130.0 255.255.255.0
+ default-router 192.168.130.1
+ dns-server 192.168.30.10
+
+ip route 192.168.10.0 255.255.255.0 10.0.0.1
+ip route 192.168.20.0 255.255.255.0 10.0.0.1
+ip route 192.168.30.0 255.255.255.0 10.0.0.1
+ip route 192.168.99.0 255.255.255.0 10.0.0.1
