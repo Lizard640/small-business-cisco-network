@@ -1,0 +1,17 @@
+hostname SW2
+
+vlan 10
+ name ADMIN
+
+vlan 20
+ name STAFF
+
+vlan 30
+ name IT
+
+vlan 99
+ name MANAGEMENT
+
+interface FastEthernet0/1
+ description TRUNK_TO_R2
+ switchport mode trunk
